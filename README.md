@@ -6,7 +6,7 @@ Special thanks to "x squared" who has posted the original code for this idea at 
 
 ## Sample Code
 
-    Section* section = new Section("Section title", 300, parentWidget);
+    Section* section = new Section("Section", 300, parentWidget);
     auto* anyLayout = new QVBoxLayout();
     anyLayout->addWidget(new QLabel("Some Text in Section", section));
     anyLayout->addWidget(new QPushButton("Button in Section", section));
