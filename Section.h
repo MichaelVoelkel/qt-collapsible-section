@@ -12,11 +12,11 @@ class Section : public QWidget {
     Q_OBJECT
 private:
 
-    QGridLayout mainLayout;
-    QToolButton toggleButton;
-    QFrame headerLine;
-    QParallelAnimationGroup toggleAnimation;
-    QScrollArea contentArea;
+    QGridLayout* mainLayout;
+    QToolButton* toggleButton;
+    QFrame* headerLine;
+    QParallelAnimationGroup* toggleAnimation;
+    QScrollArea* contentArea;
     int animationDuration;
 
 public:
