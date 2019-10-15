@@ -62,7 +62,7 @@ Section::Section(const QString & title, const int animationDuration, QWidget* pa
     mainLayout->addWidget(contentArea, row, 0, 1, 3);
     setLayout(mainLayout);
 
-    connect(toggleButton, SIGNAL(toggled(bool)), this, SLOT(toggle(bool)));
+    connect(toggleButton, &QToolButton::toggled, this, &Section::toggle);
 }
 
 
