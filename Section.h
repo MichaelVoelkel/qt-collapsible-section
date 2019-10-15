@@ -16,7 +16,7 @@
 
     You should have received a copy of the GNU General Public License
     along with Elypson/qt-collapsible-section. If not, see <http://www.gnu.org/licenses/>.
-*/    
+*/
 
 #ifndef SECTION_H
 #define SECTION_H
@@ -38,6 +38,12 @@ private:
     QParallelAnimationGroup* toggleAnimation;
     QScrollArea* contentArea;
     int animationDuration;
+
+
+public slots:
+
+    void toggled(bool collapsed);
+
 
 public:
     explicit Section(const QString & title = "", const int animationDuration = 100, QWidget* parent = 0);
