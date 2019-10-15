@@ -42,7 +42,7 @@ private:
 
 public slots:
 
-    void toggled(bool collapsed);
+    void toggle(bool collapsed);
 
 
 public:

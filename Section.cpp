@@ -62,11 +62,11 @@ Section::Section(const QString & title, const int animationDuration, QWidget* pa
     mainLayout->addWidget(contentArea, row, 0, 1, 3);
     setLayout(mainLayout);
 
-    connect(toggleButton, SIGNAL(toggled(bool)), this, SLOT(toggled(bool)));
+    connect(toggleButton, SIGNAL(toggled(bool)), this, SLOT(toggle(bool)));
 }
 
 
-void Section::toggled(bool collapsed) {
+void Section::toggle(bool collapsed) {
     toggleButton->setArrowType(collapsed ? Qt::ArrowType::DownArrow : Qt::ArrowType::RightArrow);
     toggleAnimation->setDirection(collapsed ? QAbstractAnimation::Forward : QAbstractAnimation::Backward);
     toggleAnimation->start();
