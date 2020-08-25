@@ -68,8 +68,8 @@ class Section(wd.QWidget):
         self.toggleButton.toggled.connect(self.toggle)
         
     def setContentLayout(self, contentLayout):
-        # self.clear_layout(self.contentArea.layout())
-        # del self.contentArea.layout()
+        layout = self.contentArea.layout()
+        del layout
         self.contentArea.setLayout(contentLayout)
         collapsedHeight = self.sizeHint().height() - self.contentArea.maximumHeight()
         contentHeight = contentLayout.sizeHint().height()
@@ -92,17 +92,6 @@ class Section(wd.QWidget):
             self.toggleAnimation.setDirection(cr.QAbstractAnimation.Backward)
         self.toggleAnimation.start()
     
-        
-    def clear_layout(self, layout):
-        '''Completely remove all widgets of the layout and the same for the
-        child layouts. Works. No memory leak. Widgets are destoryed.'''
-        while layout.count():
-            child = layout.takeAt(0)
-            if child.widget() is not None:
-                child.widget().deleteLater()
-            elif child.layout() is not None:
-                self.clear_layout(child.layout())
-
 
 if __name__ == '__main__':
     class Window(wd.QMainWindow):
