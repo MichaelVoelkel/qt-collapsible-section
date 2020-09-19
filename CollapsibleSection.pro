@@ -4,19 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-TARGET = CollapsibleSection
 TEMPLATE = app
+CONFIG += designer plugin release
+HEADERS  += Section.h \
+section.h
+SOURCES += Section.cpp \
+section.cpp
 
-
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    Section.cpp
-
-HEADERS  += mainwindow.h \
-    Section.h
-
-FORMS    += mainwindow.ui
+DESTDIR = $(QTDIR)/plugins/designer

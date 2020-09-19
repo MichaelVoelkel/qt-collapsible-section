@@ -27,9 +27,12 @@
 #include <QScrollArea>
 #include <QToolButton>
 #include <QWidget>
+#include <QDesignerCustomWidgetInterface>
 
-class Section : public QWidget {
+
+class Section : public QWidget, public QDesignerCustomWidgetInterface {
     Q_OBJECT
+    Q_INTERFACES(QDesignerCustomWidgetInterface)
 private:
 
     QGridLayout* mainLayout;
@@ -49,6 +52,15 @@ public:
     explicit Section(const QString & title = "", const int animationDuration = 100, QWidget* parent = 0);
 
     void setContentLayout(QLayout & contentLayout);
+
+    QString name() const;
+    QString includeFile() const;
+    QString group() const;
+    QIcon icon() const;
+    QString toolTip() const;
+    QString whatsThis() const;
+    bool isContainer() const;
+    QWidget *createWidget(QWidget *parent);
 };
 
 #endif // SECTION_H

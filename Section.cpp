@@ -22,9 +22,8 @@
 
 #include "Section.h"
 
-Section::Section(const QString & title, const int animationDuration, QWidget* parent)
-    : QWidget(parent), animationDuration(animationDuration)
-{
+Section::Section(const QString &title, const int animationDuration, QWidget *parent)
+        : QWidget(parent), animationDuration(animationDuration) {
     toggleButton = new QToolButton(this);
     headerLine = new QFrame(this);
     toggleAnimation = new QParallelAnimationGroup(this);
@@ -73,23 +72,64 @@ void Section::toggle(bool collapsed) {
 }
 
 
-void Section::setContentLayout(QLayout & contentLayout)
-{
+void Section::setContentLayout(QLayout &contentLayout) {
     delete contentArea->layout();
     contentArea->setLayout(&contentLayout);
     const auto collapsedHeight = sizeHint().height() - contentArea->maximumHeight();
     auto contentHeight = contentLayout.sizeHint().height();
 
-    for (int i = 0; i < toggleAnimation->animationCount() - 1; ++i)
-    {
-        QPropertyAnimation* SectionAnimation = static_cast<QPropertyAnimation *>(toggleAnimation->animationAt(i));
+    for (int i = 0; i < toggleAnimation->animationCount() - 1; ++i) {
+        QPropertyAnimation *SectionAnimation = static_cast<QPropertyAnimation *>(toggleAnimation->animationAt(i));
         SectionAnimation->setDuration(animationDuration);
         SectionAnimation->setStartValue(collapsedHeight);
         SectionAnimation->setEndValue(collapsedHeight + contentHeight);
     }
 
-    QPropertyAnimation* contentAnimation = static_cast<QPropertyAnimation *>(toggleAnimation->animationAt(toggleAnimation->animationCount() - 1));
+    QPropertyAnimation *contentAnimation = static_cast<QPropertyAnimation *>(toggleAnimation->animationAt(
+            toggleAnimation->animationCount() - 1));
     contentAnimation->setDuration(animationDuration);
     contentAnimation->setStartValue(0);
     contentAnimation->setEndValue(contentHeight);
 }
+
+// --------------------------------------------------------------------------------
+//                          QCustomWidget methods
+// --------------------------------------------------------------------------------
+
+QString Section::name() const {
+    return "Section";
+}
+
+QString Section::includeFile() const {
+    return "Section.h";
+}
+
+QString Section::group() const {
+    return tr("Containers");
+}
+
+QIcon Section::icon() const {
+    return QIcon("icon.png");
+}
+
+QString Section::toolTip() const {
+    return tr("Collapsible and expandable section");
+}
+
+QString Section::whatsThis() const
+{
+    return tr("Cool collpasible and expanble section widget");
+}
+
+bool Section::isContainer() const
+{
+    return true;
+}
+
+QWidget *Section::createWidget(QWidget *parent)
+{
+    return new Section("", 100, parent);
+}
+
+Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDesignerCustomWidgetInterface")
+Q_INTERFACES(QDesignerCustomWidgetInterface)
