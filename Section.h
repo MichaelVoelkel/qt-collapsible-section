@@ -33,6 +33,7 @@
 class Section : public QWidget, public QDesignerCustomWidgetInterface {
     Q_OBJECT
     Q_INTERFACES(QDesignerCustomWidgetInterface)
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDummyPlugin")
 private:
 
     QGridLayout* mainLayout;
