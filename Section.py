@@ -18,8 +18,12 @@
     along with Elypson/qt-collapsible-section. If not, see <http:#www.gnu.org/licenses/>.
 '''
 
-import PyQt5.QtCore as cr
-import PyQt5.QtWidgets as wd
+try:
+    import PySide6.QtCore as cr
+    import PySide6.QtWidgets as wd
+except:
+    import PyQt5.QtCore as cr
+    import PyQt5.QtWidgets as wd
 # import PyQt5.QtGui as gui
 import sys
 
